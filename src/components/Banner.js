@@ -1,15 +1,15 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, EffectFade } from 'swiper/modules';
+import { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import { useRef, useState, useEffect } from 'react';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 
 const BannerWrapper = styled.section`
   width: 100%;
   height: 100vh;
-  position: relative;
   overflow: hidden;
+  position: relative;
 
   .swiper {
     width: 100%;
@@ -17,16 +17,15 @@ const BannerWrapper = styled.section`
   }
 
   .swiper-slide {
-    position: relative;
     background-size: cover;
     background-position: center;
   }
 
-  .swiper-slide::before {
+  &::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.3);
     z-index: 1;
   }
 `;
@@ -37,20 +36,33 @@ const SlideText = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: #fff;
+  color: white;
   text-align: center;
-  padding: 1rem 2rem;
-  font-size: 2rem;
-  font-weight: 700;
-  max-width: 90%;
-  line-height: 1.5;
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
-  opacity: ${(props) => (props.visible ? 1 : 0)};
-  transition: opacity 0.8s ease-in-out;
+  padding: 1rem;
+  width: 90%;
+  max-width: 900px;
+  opacity: 0;
+  transition: opacity 0.6s ease;
 
-  @media (max-width: 768px) {
-    font-size: 1.3rem;
-    padding: 0.5rem 1rem;
+  &.active {
+    opacity: 1;
+  }
+
+  h2 {
+    font-size: 3.2rem;
+    font-weight: 600;
+
+    @media (max-width: 1024px) {
+      font-size: 2.6rem;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+
+    @media (max-width: 425px) {
+      font-size: 1.6rem;
+    }
   }
 `;
 
@@ -64,70 +76,55 @@ const images = [
 ];
 
 const slogans = [
-  'Где начинался флот России — прогулка по следам Петра I',
-  'Плещеево озеро — вдохновляющие виды и тишина',
-  'Спокойствие реки Трубеж и звон колоколов на берегу',
-  'Сапы, лодки, катамараны — отдых на любой вкус',
-  'Природа, история, вода — Переславль ждёт вас',
-  'Погружение в атмосферу древнего города и живой природы',
+  'Погрузитесь в гладь Плещеева озера',
+  'Исследуйте извилистый Трубеж',
+  'Пройдите маршрутом потешной флотилии Петра I',
+  'Насладитесь прогулкой вдвоём, с семьёй или друзьями',
+  'Отдохните в сердце древнего Переславля',
+  'Вернётесь сюда снова — мы уверены',
 ];
 
 export default function Banner() {
-  const swiperRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [textVisible, setTextVisible] = useState(true);
+  const swiperRef = useRef(null);
 
   useEffect(() => {
-    if (!swiperRef.current) return;
+    const interval = setInterval(() => {
+      if (swiperRef.current?.swiper) {
+        swiperRef.current.swiper.slideNext();
+      }
+    }, 5000);
 
-    const swiper = swiperRef.current;
-
-    const handleSlideChange = () => {
-
-      setTextVisible(false);
-    };
-
-    const handleTransitionEnd = () => {
-
-      setActiveIndex(swiper.realIndex);
-      setTextVisible(true);
-    };
-
-    swiper.on('slideChangeTransitionStart', handleSlideChange);
-    swiper.on('slideChangeTransitionEnd', handleTransitionEnd);
-
-    return () => {
-      swiper.off('slideChangeTransitionStart', handleSlideChange);
-      swiper.off('slideChangeTransitionEnd', handleTransitionEnd);
-    };
+    return () => clearInterval(interval);
   }, []);
 
   return (
     <BannerWrapper id="banner">
       <Swiper
+        ref={swiperRef}
         modules={[Autoplay, EffectFade]}
         effect="fade"
         autoplay={{
           delay: 5000,
           disableOnInteraction: false,
         }}
-        speed={3000}
+        speed={2000}
         loop={true}
-        onSwiper={(swiper) => (swiperRef.current = swiper)}
+        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
       >
         {images.map((src, index) => (
           <SwiperSlide
             key={index}
             style={{ backgroundImage: `url(${src})` }}
-          >
-            {index === activeIndex && (
-              <SlideText visible={textVisible}>
-                {slogans[index]}
-              </SlideText>
-            )}
-          </SwiperSlide>
+          />
         ))}
       </Swiper>
+
+      {slogans.map((text, index) => (
+        <SlideText key={index} className={index === activeIndex ? 'active' : ''}>
+          <h2>{text}</h2>
+        </SlideText>
+      ))}
     </BannerWrapper>
   );
 }

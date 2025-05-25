@@ -6,10 +6,27 @@ const Section = styled(motion.section)`
   padding: 100px 20px;
   scroll-margin-top: 80px;
   text-align: center;
+
+  @media (max-width: 768px) {
+    padding: 80px 16px;
+  }
+
+  @media (max-width: 425px) {
+    padding: 60px 12px;
+  }
 `;
 
 const Title = styled.h2`
+  font-size: 2rem;
   margin-bottom: 1.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.6rem;
+  }
+
+  @media (max-width: 425px) {
+    font-size: 1.4rem;
+  }
 `;
 
 const PhoneLink = styled.a`
@@ -23,11 +40,27 @@ const PhoneLink = styled.a`
   &:hover {
     text-decoration: underline;
   }
+
+  @media (max-width: 768px) {
+    font-size: 1.6rem;
+  }
+
+  @media (max-width: 425px) {
+    font-size: 1.4rem;
+  }
 `;
 
 const Name = styled.p`
   font-size: 1.1rem;
   color: var(--text);
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+
+  @media (max-width: 425px) {
+    font-size: 0.95rem;
+  }
 `;
 
 export default function Order() {

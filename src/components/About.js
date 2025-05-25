@@ -6,6 +6,29 @@ const Section = styled(motion.section)`
   padding: 100px 20px;
   max-width: 800px;
   margin: 0 auto;
+  scroll-margin-top: 80px;
+
+  @media (max-width: 768px) {
+    padding: 80px 16px;
+  }
+
+  @media (max-width: 425px) {
+    padding: 60px 12px;
+  }
+`;
+
+const Title = styled.h2`
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.6rem;
+  }
+
+  @media (max-width: 425px) {
+    font-size: 1.4rem;
+  }
 `;
 
 const Paragraph = styled.p`
@@ -18,6 +41,10 @@ const Paragraph = styled.p`
     font-size: 1rem;
     text-align: left;
   }
+
+  @media (max-width: 425px) {
+    font-size: 0.95rem;
+  }
 `;
 
 export default function About() {
@@ -28,7 +55,7 @@ export default function About() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
     >
-      <h2>О нас</h2>
+      <Title>О нас</Title>
 
       <Paragraph>
         Наш прокат расположен в самом сердце Переславля-Залесского — древнего города на берегу Плещеева озера и устье реки Трубеж. Именно здесь юный Пётр I начал строить свою «потешную флотилию», положив начало будущему российскому флоту.

@@ -12,6 +12,16 @@ const Nav = styled.nav`
   padding: 0.75rem 2rem;
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    padding: 0.5rem 1rem;
+  }
+
+  @media (max-width: 425px) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.5rem 1rem;
+  }
 `;
 
 const Logo = styled.div`
@@ -21,6 +31,14 @@ const Logo = styled.div`
   img {
     height: 36px;
     width: auto;
+
+    @media (max-width: 768px) {
+      height: 30px;
+    }
+
+    @media (max-width: 425px) {
+      height: 26px;
+    }
   }
 
   span {
@@ -28,11 +46,28 @@ const Logo = styled.div`
     font-weight: bold;
     color: var(--primary);
     font-size: 1.1rem;
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
+
+    @media (max-width: 425px) {
+      font-size: 0.95rem;
+    }
+  }
+
+  @media (max-width: 425px) {
+    margin-bottom: 0.5rem;
   }
 `;
 
 const NavLinks = styled.div`
   display: flex;
+
+  @media (max-width: 425px) {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
 `;
 
 const NavLink = styled.button`
@@ -46,6 +81,16 @@ const NavLink = styled.button`
 
   &:hover {
     text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+    margin-left: 0.75rem;
+  }
+
+  @media (max-width: 425px) {
+    font-size: 0.9rem;
+    margin-left: 0;
   }
 `;
 
@@ -62,7 +107,7 @@ export default function Header({ locationRef }) {
     <Nav>
       <Logo>
         <Image src="/images/logo/logo.png" alt="Логотип" width={36} height={36} />
-        <span>Прокат лодок, сапов, катамаранов в Переславле-Залесском</span>
+        <span>Прокат лодок, сапов, катамаранов</span>
       </Logo>
 
       <NavLinks>
