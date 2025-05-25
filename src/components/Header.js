@@ -35,29 +35,41 @@ const NavLinks = styled.div`
   display: flex;
 `;
 
-const NavLink = styled.a`
+const NavLink = styled.button`
   margin-left: 1rem;
   font-weight: bold;
   color: var(--primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
 
   &:hover {
     text-decoration: underline;
   }
 `;
 
-export default function Header() {
+const scrollTo = (target) => {
+  if (target?.current) {
+    target.current.scrollIntoView({ behavior: 'smooth' });
+  } else if (target?.scrollIntoView) {
+    target.scrollIntoView({ behavior: 'smooth' });
+  }
+};
+
+export default function Header({ locationRef }) {
   return (
     <Nav>
       <Logo>
         <Image src="/images/logo/logo.png" alt="Логотип" width={36} height={36} />
-        <span>Прокат лодок, сапов, катамаранов Переславль</span>
+        <span>Прокат лодок, сапов, катамаранов</span>
       </Logo>
 
       <NavLinks>
-        <NavLink href="#about">О нас</NavLink>
-        <NavLink href="#location">Как нас найти</NavLink>
-        <NavLink href="#gallery">Галерея</NavLink>
-        <NavLink href="#order">Заказать</NavLink>
+        <NavLink onClick={() => scrollTo(document.getElementById('about'))}>О нас</NavLink>
+        <NavLink onClick={() => scrollTo(locationRef)}>Как нас найти</NavLink>
+        <NavLink onClick={() => scrollTo(document.getElementById('gallery'))}>Галерея</NavLink>
+        <NavLink onClick={() => scrollTo(document.getElementById('order'))}>Заказать</NavLink>
       </NavLinks>
     </Nav>
   );

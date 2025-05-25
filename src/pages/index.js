@@ -7,20 +7,25 @@ import About from '../components/About';
 import Location from '../components/Location';
 import Gallery from '../components/Gallery';
 import Order from '../components/Order';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Home() {
+  const locationRef = useRef(null);
+  const [setShowMap] = useState(false);
+
+  useEffect(() => {
+  if (window.location.hash) {
+    history.replaceState(null, '', window.location.pathname);
+  }
+}, []);
+
   return (
     <>
-      <Head>
-        <title>Прокат лодок и сапов</title>
-        <meta name="description" content="Аренда лодок, сапов и катамаранов в живописных местах" />
-      </Head>
-      <GlobalStyle />
-      <Header />
+      <Header locationRef={locationRef} onLocationClick={() => setShowMap(true)} />
       <main>
         <Banner />
         <About />
-        <Location />
+        <Location ref={locationRef} />
         <Gallery />
         <Order />
       </main>

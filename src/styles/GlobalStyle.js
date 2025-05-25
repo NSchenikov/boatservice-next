@@ -14,6 +14,14 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
 
+  /* *, *:focus {
+    outline: none !important;
+  }
+
+  .leaflet-container {
+    outline: none !important;
+  } */
+
   html, body {
     font-family: Arial, sans-serif;
     scroll-behavior: smooth;
