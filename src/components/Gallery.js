@@ -1,8 +1,13 @@
 import { motion } from 'framer-motion';
+import styled from 'styled-components';
+
+const Section = styled(motion.section)`
+  background: white;
+`;
 
 export default function Gallery() {
   return (
-    <motion.section
+    <Section
       id="gallery"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -10,6 +15,6 @@ export default function Gallery() {
     >
       <h2>Галерея</h2>
       <div>[Тут будет карусель]</div>
-    </motion.section>
+    </Section>
   );
 }

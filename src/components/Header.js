@@ -4,7 +4,7 @@ const Nav = styled.nav`
   position: fixed;
   top: 0;
   width: 100%;
-  background: rgba(255, 255, 255, 0.95);
+  background: white;
   display: flex;
   justify-content: center;
   padding: 1rem;
@@ -15,6 +15,11 @@ const Nav = styled.nav`
 const NavLink = styled.a`
   margin: 0 1rem;
   font-weight: bold;
+  color: var(--primary);
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export default function Header() {

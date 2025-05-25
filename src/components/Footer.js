@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 const FooterWrapper = styled.footer`
-  background: #f0f0f0;
+  background: var(--footer-bg);
   padding: 2rem;
   text-align: center;
+  color: var(--text);
 `;
 
 export default function Footer() {
