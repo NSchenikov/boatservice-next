@@ -1,6 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, EffectFade } from 'swiper/modules';
 import { useState, useRef, useEffect } from 'react';
+import { images, slogans } from '@/utils/bannerData';
 import styled from 'styled-components';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
@@ -69,24 +70,6 @@ const SlideText = styled.div`
     }
   }
 `;
-
-const images = [
-  '/images/banner/IMG_7995.jpg',
-  '/images/banner/IMG_7996.jpg',
-  '/images/banner/IMG_7997.jpg',
-  '/images/banner/IMG_7998.jpg',
-  '/images/banner/IMG_7999.jpg',
-  '/images/banner/IMG_8001.jpg',
-];
-
-const slogans = [
-  'Где начинался флот России — прогулка по следам Петра I',
-  'Плещеево озеро — вдохновляющие виды и тишина',
-  'Спокойствие реки Трубеж и звон колоколов на берегу',
-  'Сапы, лодки, катамараны — отдых на любой вкус',
-  'Природа, история, вода — Переславль ждёт вас',
-  'Погружение в атмосферу древнего города и живой природы',
-];
 
 export default function Banner() {
   const [activeIndex, setActiveIndex] = useState(0);
