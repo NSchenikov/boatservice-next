@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, EffectFade } from 'swiper/modules';
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
@@ -36,21 +36,22 @@ const SlideText = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: white;
   text-align: center;
   padding: 1rem;
   width: 90%;
   max-width: 900px;
   opacity: 0;
-  transition: opacity 0.6s ease;
+  transition: opacity 0.4s ease-in-out;
 
   &.active {
     opacity: 1;
   }
 
   h2 {
+    color: #fff !important;
     font-size: 3.2rem;
     font-weight: 600;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 
     @media (max-width: 1024px) {
       font-size: 2.6rem;
@@ -76,32 +77,20 @@ const images = [
 ];
 
 const slogans = [
-  'Погрузитесь в гладь Плещеева озера',
-  'Исследуйте извилистый Трубеж',
-  'Пройдите маршрутом потешной флотилии Петра I',
-  'Насладитесь прогулкой вдвоём, с семьёй или друзьями',
-  'Отдохните в сердце древнего Переславля',
-  'Вернётесь сюда снова — мы уверены',
+  'Где начинался флот России — прогулка по следам Петра I',
+  'Плещеево озеро — вдохновляющие виды и тишина',
+  'Спокойствие реки Трубеж и звон колоколов на берегу',
+  'Сапы, лодки, катамараны — отдых на любой вкус',
+  'Природа, история, вода — Переславль ждёт вас',
+  'Погружение в атмосферу древнего города и живой природы',
 ];
 
 export default function Banner() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const swiperRef = useRef(null);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (swiperRef.current?.swiper) {
-        swiperRef.current.swiper.slideNext();
-      }
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <BannerWrapper id="banner">
       <Swiper
-        ref={swiperRef}
         modules={[Autoplay, EffectFade]}
         effect="fade"
         autoplay={{
