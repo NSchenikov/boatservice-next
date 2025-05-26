@@ -29,7 +29,7 @@ export default function Home() {
         <Gallery />
         <Order />
       </main>
-      <Footer />
+        <Footer locationRef={locationRef} />
     </>
   );
 }

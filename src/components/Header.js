@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Image from 'next/image';
+import { scrollTo } from '../utils/scrollTo';
 
 const Nav = styled.nav`
   position: fixed;
@@ -93,14 +94,6 @@ const NavLink = styled.button`
     margin-left: 0;
   }
 `;
-
-const scrollTo = (target) => {
-  if (target?.current) {
-    target.current.scrollIntoView({ behavior: 'smooth' });
-  } else if (target?.scrollIntoView) {
-    target.scrollIntoView({ behavior: 'smooth' });
-  }
-};
 
 export default function Header({ locationRef }) {
   return (

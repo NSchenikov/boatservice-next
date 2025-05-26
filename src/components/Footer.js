@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Image from 'next/image';
+import { scrollTo } from '../utils/scrollTo';
 
 const FooterWrapper = styled.footer`
   background: white;
@@ -64,11 +65,14 @@ const FooterLinks = styled.div`
   }
 `;
 
-const FooterLink = styled.a`
+const FooterLink = styled.button`
   font-weight: bold;
   color: var(--primary);
+  background: none;
+  border: none;
   text-decoration: none;
   font-size: 1rem;
+  cursor: pointer;
 
   &:hover {
     text-decoration: underline;
@@ -83,7 +87,15 @@ const FooterLink = styled.a`
   }
 `;
 
-export default function Footer() {
+// const scrollTo = (target) => {
+//   if (target?.current) {
+//     target.current.scrollIntoView({ behavior: 'smooth' });
+//   } else if (target?.scrollIntoView) {
+//     target.scrollIntoView({ behavior: 'smooth' });
+//   }
+// };
+
+export default function Footer({ locationRef }) {
   return (
     <FooterWrapper>
       <Logo>
@@ -92,10 +104,10 @@ export default function Footer() {
       </Logo>
 
       <FooterLinks>
-        <FooterLink href="#about">О нас</FooterLink>
-        <FooterLink href="#location">Как нас найти</FooterLink>
-        <FooterLink href="#gallery">Галерея</FooterLink>
-        <FooterLink href="#order">Заказать</FooterLink>
+        <FooterLink onClick={() => scrollTo(document.getElementById('about'))}>О нас</FooterLink>
+        <FooterLink onClick={() => scrollTo(locationRef)}>Как нас найти</FooterLink>
+        <FooterLink onClick={() => scrollTo(document.getElementById('gallery'))}>Галерея</FooterLink>
+        <FooterLink onClick={() => scrollTo(document.getElementById('order'))}>Заказать</FooterLink>
       </FooterLinks>
     </FooterWrapper>
   );
