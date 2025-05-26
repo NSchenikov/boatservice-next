@@ -66,6 +66,7 @@ const FooterLinks = styled.div`
 `;
 
 const FooterLink = styled.button`
+  white-space: nowrap;
   font-weight: bold;
   color: var(--primary);
   background: none;
@@ -87,20 +88,12 @@ const FooterLink = styled.button`
   }
 `;
 
-// const scrollTo = (target) => {
-//   if (target?.current) {
-//     target.current.scrollIntoView({ behavior: 'smooth' });
-//   } else if (target?.scrollIntoView) {
-//     target.scrollIntoView({ behavior: 'smooth' });
-//   }
-// };
-
 export default function Footer({ locationRef }) {
   return (
     <FooterWrapper>
       <Logo>
         <Image src="/images/logo/logo.png" alt="Логотип" width={36} height={36} />
-        <span>Прокат лодок, сапов, катамаранов</span>
+        <span>Прокат лодок, сапов, катамаранов в Переславле</span>
       </Logo>
 
       <FooterLinks>

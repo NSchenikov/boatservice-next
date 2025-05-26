@@ -72,6 +72,7 @@ const NavLinks = styled.div`
 `;
 
 const NavLink = styled.button`
+  white-space: nowrap;
   margin-left: 1rem;
   font-weight: bold;
   color: var(--primary);
