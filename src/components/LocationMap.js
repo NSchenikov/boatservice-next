@@ -2,32 +2,8 @@
 
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { useEffect, useState } from 'react';
-import styled from 'styled-components';
-
-const coordinates = [56.734148, 38.831071];
-
-const MapWrapper = styled.div`
-  width: 100%;
-  max-width: 800px;
-  height: 400px;
-  min-height: 400px;
-  position: relative;
-  overflow: hidden;
-  margin: 0 auto 1.5rem auto;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-`;
-
-const AddressText = styled.p`
-  text-align: center;
-  font-size: 1.1rem;
-  color: var(--text);
-  margin-top: 0.5rem;
-
-  @media (max-width: 768px) {
-    font-size: 1rem;
-  }
-`;
+import { coordinates } from '@/utils/coordinates';
+import * as S from '../styles/StyledLocation'
 
 export default function LocationMap() {
   const [icon, setIcon] = useState(null);
@@ -51,7 +27,7 @@ export default function LocationMap() {
 
   return (
     <>
-      <MapWrapper>
+      <S.MapWrapper>
         <MapContainer
           center={coordinates}
           zoom={17}
@@ -69,11 +45,11 @@ export default function LocationMap() {
             </Popup>
           </Marker>
         </MapContainer>
-      </MapWrapper>
+      </S.MapWrapper>
 
-      <AddressText>
+      <S.AddressText>
         ул. Левая набережная, д. 107, Переславль-Залесский
-      </AddressText>
+      </S.AddressText>
     </>
   );
 }
