@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, EffectFade } from 'swiper/modules';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
@@ -10,6 +10,10 @@ const BannerWrapper = styled.section`
   height: 100vh;
   overflow: hidden;
   position: relative;
+
+  @media (max-width: 425px) {
+    height: 70vh;
+  }
 
   .swiper {
     width: 100%;
@@ -41,17 +45,16 @@ const SlideText = styled.div`
   width: 90%;
   max-width: 900px;
   opacity: 0;
-  transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.6s ease;
 
   &.active {
     opacity: 1;
   }
 
   h2 {
-    color: #fff !important;
     font-size: 3.2rem;
     font-weight: 600;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    color: white;
 
     @media (max-width: 1024px) {
       font-size: 2.6rem;
@@ -87,17 +90,39 @@ const slogans = [
 
 export default function Banner() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const swiperRef = useRef(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (swiperRef.current?.swiper) {
+        swiperRef.current.swiper.slideNext();
+      }
+    }, 5000);
+
+    const handleResize = () => {
+      swiperRef.current?.swiper?.update();
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <BannerWrapper id="banner">
       <Swiper
+        ref={swiperRef}
         modules={[Autoplay, EffectFade]}
         effect="fade"
         autoplay={{
           delay: 5000,
           disableOnInteraction: false,
         }}
-        speed={2000}
+        speed={3000}
         loop={true}
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
       >

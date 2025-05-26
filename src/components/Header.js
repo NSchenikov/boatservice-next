@@ -107,7 +107,7 @@ export default function Header({ locationRef }) {
     <Nav>
       <Logo>
         <Image src="/images/logo/logo.png" alt="Логотип" width={36} height={36} />
-        <span>Прокат лодок, сапов, катамаранов в Переславле-Залесском</span>
+        <span>Прокат лодок, сапов, катамаранов в Переславле</span>
       </Logo>
 
       <NavLinks>
