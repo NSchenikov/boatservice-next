@@ -33,4 +33,4 @@ cd boatservice-next
 npm install
 npm run dev
 
-Деплой: ...
+Деплой: https://boatservice-next.vercel.app
