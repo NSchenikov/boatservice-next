@@ -40,11 +40,13 @@ export const Logo = styled.div`
     font-size: 1.1rem;
 
     @media (max-width: 768px) {
-      font-size: 1rem;
+      /* font-size: 1rem; */
+      font-size: 0.8rem;
     }
 
     @media (max-width: 425px) {
-      font-size: 0.95rem;
+      /* font-size: 0.95rem; */
+      font-size: 0.7rem;
     }
   }
 
