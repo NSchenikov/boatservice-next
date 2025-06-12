@@ -11,7 +11,7 @@ import { useEffect, useRef, useState } from 'react';
 
 export default function Home() {
   const locationRef = useRef(null);
-  const [setShowMap] = useState(false);
+const [, setShowMap] = useState(false);
 
   useEffect(() => {
   if (window.location.hash) {
