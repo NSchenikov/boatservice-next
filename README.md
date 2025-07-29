@@ -30,6 +30,9 @@
 ```bash
 git clone https://github.com/NSchenikov/boatservice-next.git
 cd boatservice-next
+
+необходимо локально добавить тяжелые файлы в папку public (невозможно запушить эти файлы в данный репозиторий). Ссылка на скачивание: https://disk.yandex.ru/d/3heA-5ysW0fGUw
+
 npm install
 npm run dev
 

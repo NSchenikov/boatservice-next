@@ -7,7 +7,7 @@ export default function Header({ locationRef }) {
   return (
     <S.Nav>
       <S.Logo>
-        <Image src="/images/logo/logo.png" alt="Логотип" width={36} height={36} />
+        <Image src="/images/logo/logo.png" alt="Логотип" width="36" height="36" />
         <span>Прокат лодок, сапов, катамаранов в Переславле</span>
       </S.Logo>
 

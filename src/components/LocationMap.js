@@ -32,17 +32,17 @@ export default function LocationMap() {
 
     if (typeof window !== 'undefined') {
       if (!window.ymaps) {
-        console.log('Загружаем Yandex Maps API...');
+        // console.log('Загружаем Yandex Maps API...');
         const script = document.createElement('script');
         script.src = 'https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=9d6a9966-9c7c-4939-9920-592fcf279ea6';
         script.async = true;
         script.onload = () => {
-          console.log('Yandex Maps API загружен');
+          // console.log('Yandex Maps API загружен');
           initMap();
         };
         document.body.appendChild(script);
       } else {
-        console.log('ymaps уже загружен');
+        // console.log('ymaps уже загружен');
         initMap();
       }
     }

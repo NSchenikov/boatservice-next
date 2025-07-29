@@ -64,3 +64,11 @@ export const SlideText = styled.div`
     }
   }
 `;
+
+export const StaticSlide = styled.div`
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+`;
