@@ -14,6 +14,12 @@ const Location = forwardRef((props, ref) => (
     <h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>
       Как нас найти
     </h2>
+
+    <p style={{ textAlign: 'center', maxWidth: 600, margin: '0 auto 2rem', fontSize: '1.1rem', lineHeight: '1.6' }}>
+    Мы находимся в&nbsp;<strong>Переславле-Залесском</strong>, на <strong>улице Левая Набережная</strong>, 
+    прямо на берегу, рядом с домом 107. Идеальное место для старта прогулки по реке Трубеж и Плещееву озеру.
+    </p>
+
     <LocationContent />
   </S.Section>
 ));
