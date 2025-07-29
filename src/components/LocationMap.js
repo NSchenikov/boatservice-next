@@ -1,54 +1,61 @@
 'use client';
 
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { useEffect, useState } from 'react';
-import { coordinates } from '@/utils/coordinates';
-import * as S from '../styles/StyledLocation'
+import { useEffect, useRef } from 'react';
+import { coordinates, dotName } from '@/utils/coordinates';
+import * as S from '../styles/StyledLocation';
 
 export default function LocationMap() {
-  const [icon, setIcon] = useState(null);
+  const mapRef = useRef(null);
 
   useEffect(() => {
-    import('leaflet').then(L => {
-      const customIcon = new L.Icon({
-        iconUrl: '/images/icons/marker-icon.png',
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowUrl: '/images/icons/marker-shadow.png',
-        shadowSize: [41, 41],
+    const initMap = () => {
+      window.ymaps.ready(() => {
+        const map = new window.ymaps.Map(mapRef.current, {
+          center: coordinates,
+          zoom: 17,
+          controls: ['zoomControl'],
+        });
+
+        const placemark = new window.ymaps.Placemark(
+          coordinates,
+          {
+            balloonContent: `Прокат лодок, сапов и катамаранов<br/>${dotName}`,
+          },
+          {
+            preset: 'islands#redIcon',
+          }
+        );
+
+        map.geoObjects.add(placemark);
       });
+    };
 
-      setIcon(customIcon);
-    });
+    if (typeof window !== 'undefined') {
+      if (!window.ymaps) {
+        console.log('Загружаем Yandex Maps API...');
+        const script = document.createElement('script');
+        script.src = 'https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=9d6a9966-9c7c-4939-9920-592fcf279ea6';
+        script.async = true;
+        script.onload = () => {
+          console.log('Yandex Maps API загружен');
+          initMap();
+        };
+        document.body.appendChild(script);
+      } else {
+        console.log('ymaps уже загружен');
+        initMap();
+      }
+    }
   }, []);
-
-  if (!icon) return null;
 
   return (
     <>
       <S.MapWrapper>
-        <MapContainer
-          center={coordinates}
-          zoom={17}
-          scrollWheelZoom={false}
-          style={{ width: '100%', height: '100%' }}
-        >
-          <TileLayer
-            attribution='&copy; OpenStreetMap contributors'
-            url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-          />
-          <Marker position={coordinates} icon={icon}>
-            <Popup>
-              Прокат лодок, сапов и катамаранов<br />
-              ул. Левая набережная, д. 107
-            </Popup>
-          </Marker>
-        </MapContainer>
+        <div ref={mapRef} style={{ width: '100%', height: '100%' }} />
       </S.MapWrapper>
 
       <S.AddressText>
-        ул. Левая набережная, д. 107, Переславль-Залесский
+        {dotName}, Переславль-Залесский
       </S.AddressText>
     </>
   );

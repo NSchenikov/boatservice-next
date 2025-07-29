@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic';
 import { forwardRef } from 'react';
-import * as S from '../styles/StyledLocation'
+import * as S from '../styles/StyledLocation';
 
-const LocationMap = dynamic(() => import('./LocationMap'), { ssr: false });
+const LocationContent = dynamic(() => import('./LocationContent'), { ssr: false });
 
 const Location = forwardRef((props, ref) => (
   <S.Section
@@ -14,7 +14,7 @@ const Location = forwardRef((props, ref) => (
     <h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>
       Как нас найти
     </h2>
-    <LocationMap />
+    <LocationContent />
   </S.Section>
 ));
 
