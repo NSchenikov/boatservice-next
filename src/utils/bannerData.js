@@ -1,10 +1,10 @@
 export const images = [
-  '/images/banner/IMG_7995.jpg',
-  '/images/banner/IMG_7996.jpg',
-  '/images/banner/IMG_7997.jpg',
-  '/images/banner/IMG_7998.jpg',
-  '/images/banner/IMG_7999.jpg',
-  '/images/banner/IMG_8001.jpg',
+  '/images/banner/IMG_7995.webp',
+  '/images/banner/IMG_7996.webp',
+  '/images/banner/IMG_7997.webp',
+  '/images/banner/IMG_7998.webp',
+  '/images/banner/IMG_7999.webp',
+  '/images/banner/IMG_8001.webp',
 ];
 
 export const slogans = [
