@@ -31,7 +31,7 @@
 git clone https://github.com/NSchenikov/boatservice-next.git
 cd boatservice-next
 
-необходимо локально добавить тяжелые файлы в папку public (невозможно запушить эти файлы в данный репозиторий). Ссылка на скачивание: https://disk.yandex.ru/d/Kzq9uF2Q8X_YMQ
+необходимо локально добавить тяжелые файлы в папку public (невозможно запушить эти файлы в данный репозиторий). Ссылка на скачивание: https://disk.yandex.ru/d/Kzq9uF2Q8X_YMQ , при этом sitemap.xml и robots.txt лучше оставить в папке public без изменений
 
 npm install
 npm run dev
